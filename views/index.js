@@ -1,4 +1,4 @@
-const mapKey = "AIzaSyC5xiQlaI8uYOM9V2e6jPmtPZ1KoC0Y_YY"; // AIzaSyD3ocEcQmg9Zw6TolLbOJrQnPZpCi2lYQU
+const mapKey = "YOURAPIKEYHERE";
 
 var map;
 var globalPos;
