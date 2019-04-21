@@ -1,11 +1,16 @@
-const mapKey = "YOURAPIKEYHERE";
+const mapKey = "AIzaSyD3ocEcQmg9Zw6TolLbOJrQnPZpCi2lYQU"; // AIzaSyC5xiQlaI8uYOM9V2e6jPmtPZ1KoC0Y_YY
 
 var map;
 var globalPos;
 var hasGeoLocation;
 var markers = [];
-
+var marker = null;
+var directionsService = null;
+ var directionsDisplay = null;
+ var globalEndPos;
 function initMap() {
+	directionsService = new google.maps.DirectionsService();
+	directionsDisplay = new google.maps.DirectionsRenderer({suppressMarkers: true});
     map = new google.maps.Map(document.getElementById('map'), {
         center: {lat: 0.0, lng: 0.0},
         zoom: 15,
@@ -187,7 +192,7 @@ function initMap() {
   }
 ]
     });
-
+    directionsDisplay.setMap(map);
     if (navigator.geolocation) {
     	navigator.geolocation.watchPosition(function(position) {
             var pos = {
@@ -198,6 +203,10 @@ function initMap() {
 	document.getElementById("latitude").value =  position.coords.latitude;
 
 			globalPos = pos;
+			
+			if (marker != null){
+				marker.setMap(null);
+			}
 			marker = new google.maps.Marker({
 				position: globalPos,
 				map: map,
@@ -209,7 +218,9 @@ function initMap() {
 
             map.setCenter(pos);
 			hasGeoLocation = true;
-
+			if (globalEndPos != null) {
+				calcRoute(globalPos, globalEndPos);
+			}
         }, function() {
             handleLocationError(true, infoWindow, map.getCenter());
         });
@@ -368,7 +379,7 @@ function createMarker(place) {
 				+ "<div class=\"res-type\">" + type + "</div>"
 				+ "<div class=\"res-address\">" + place.vicinity + "</div>"
 				+ "<div class=\"res-rating\">User Rating: " + place.rating + " / 5 out of " + place.user_ratings_total + " ratings</div>"
-				+ ((place.opening_hours.open_now == "true") ? "<div class=\"res-open\">Open Now</div>" : "<div class=\"res-open\">Closed Now</div>")
+				+ ((place.opening_hours.open_now == true) ? "<div class=\"res-open\">Open Now</div>" : "<div class=\"res-open\">Closed Now</div>")
 			+ "</td>"
         + "<td><input class=\"getDirections\" type=\"button\" value=\"Get Directions\"></td><br />";
     		break;
@@ -408,9 +419,23 @@ function createMarker(place) {
     $(".getDirections").click(function() {
       var res_address = $(this).closest('tr').find('.res-address').text();
       console.log(res_address);
+      globalEndPos = res_address;
+ 	  calcRoute(globalPos,globalEndPos);
     });
 }
+function calcRoute(startPos, endPos) {
 
+ 	var request = {
+ 		origin: startPos,
+ 		destination: endPos,
+ 		travelMode: 'DRIVING'
+ 	};
+ 	directionsService.route(request, function(response, status) {
+    if (status == 'OK') {
+      directionsDisplay.setDirections(response);
+    } 
+  });
+}
 function hideAllInfoWindows(map) {
    markers.forEach(function(marker) {
      marker.infowindow.close(map, marker);

@@ -19,11 +19,11 @@
 			<label for="history">Choose from previous searches</label>
 			<select name="history" id="historyMenu">
 
-			</select>
+			</select><br /> <br />
 		</div>    
 
-    	<form id="restaurantForm" action="/userqueries/addquery" method="post">
-	      	Radius around your location to search (meters): 
+    	<form  id="restaurantForm" action="/userqueries/addquery" method="post">
+		How far are you willing to travel (in meters): 
 	      	<div id="radValue" style="display: inline;">500m</div>
 	      	<div class="slidecontainer" style="display: inline; padding-top: 5%;">
 	                <input type="range" min="10" max="10000" value="100" class="slider" id="radiusRange" name="radius" <%=userqueries[i].radius; %>
@@ -45,9 +45,9 @@
 			</div>
 			
 	        <button type="submit" onclick="findNearbyRestaraunts()">Submit</button>
-<br />
+			<br />
 			<input type="checkbox" id="tOS" name="tOS" checked=true required> <p style="display: inline;">* I acknowledge that my data will be collected upon submission</p>
-		<br />
+			<br />
     	</form>
 	</div>      
 
@@ -63,10 +63,8 @@
 	    <section id="map"> </section>
 	</div>
 
-
-
     <script src="index.js"></script> 
-    <!--<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY_HERE&libraries=places&callback=initMap"
-    async defer></script>-->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5xiQlaI8uYOM9V2e6jPmtPZ1KoC0Y_YY&libraries=places&callback=initMap"
+    async defer></script>
   </body>
 </html>

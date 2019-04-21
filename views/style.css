@@ -95,19 +95,11 @@ h1 {
   text-align: center;
 }
 
-input[type=button], input[type=submit], input[type=reset] {
-  background-color: #e30504;
-  border: none;
-  color: white;
-  padding: 4px 8px;
-  text-decoration: none;
-  cursor: pointer;
-  display: block;
-}
-
+/*
 .submitButton {
   margin: 0 47.5%;
 }
+*/
 
 img{
 	max-width:100px;
@@ -145,12 +137,13 @@ img{
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 35%; /* Full-width */
-  height: 25px; /* Specified height */
+  height: 15px; /* Specified height */
   background: #d3d3d3; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
+  margin: 5px;
 }
 
 /* Mouse-over effects */
@@ -162,15 +155,15 @@ img{
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none; /* Override default look */
   appearance: none;
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
   background: navy; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
 
 .slider::-moz-range-thumb {
-  width: 25px; /* Set a specific slider handle width */
-  height: 25px; /* Slider handle height */
+  width: 15px; /* Set a specific slider handle width */
+  height: 15px; /* Slider handle height */
   background: navy; /* Green background */
   cursor: pointer; /* Cursor on hover */
 }
@@ -205,10 +198,7 @@ td {
 
 }
 
-@media only screen 
-  and (min-device-width: 375px) 
-  and (max-device-width: 667px) 
-  and (-webkit-min-device-pixel-ratio: 2) { 
+@media only screen and (max-width: 1000px) { 
 
   html, body{
     background-image: url('back2.jpg');
@@ -250,3 +240,46 @@ td {
     background-color: rgba(35,127,239,1);
   }
 }
+
+input, textarea { 
+    padding: 9px; 
+    border: solid 1px #E5E5E5; 
+    outline: 0; 
+    font: normal 13px/100% Verdana, Tahoma, sans-serif; 
+    width: 200px; 
+    background: #FFFFFF url('bg_form.png') left top repeat-x; 
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF)); 
+    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px); 
+    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px; 
+    } 
+
+input[type=checkbox] {
+   width: 20px;
+}
+   
+textarea { 
+    width: 400px; 
+    max-width: 400px; 
+    height: 150px; 
+    line-height: 110%; 
+    } 
+   
+select {
+  width: 50%;
+  padding: 16px 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: #f1f1f1;
+  margin: 4px 4px 10px 10px;
+}
+
+button {
+  background-color: #000000;
+  border: none;
+  color: white;
+  padding: 10px 30px;
+  margin: 10px;
+}
+
